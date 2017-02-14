@@ -12,7 +12,7 @@ import com.loopj.android.http.RequestParams;
 
 public class RestClient {
 //    private static final String BASE_URL = "http://socmed-dev.udata.id/udata/ajax/waitinglistreport";
-    private static final String BASE_URL = "http://192.168.0.15:10000/api/";
+    private static final String BASE_URL = "http://192.168.0.14:10000/api/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
