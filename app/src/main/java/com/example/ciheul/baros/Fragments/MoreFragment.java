@@ -1,12 +1,12 @@
-package com.example.ciheul.baros;
+package com.example.ciheul.baros.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.example.ciheul.baros.R;
 
 /**
  * Created by ciheul on 14/02/17.
