@@ -37,6 +37,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddNewCase"
+            android:label="@string/app_new_case">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.Login" />
+
+        </activity>
     </application>
 
 </manifest>

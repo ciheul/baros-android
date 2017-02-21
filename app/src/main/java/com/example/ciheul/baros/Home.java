@@ -1,5 +1,6 @@
 package com.example.ciheul.baros;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.text.method.ScrollingMovementMethod;
 
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ciheul.baros.Fragments.CasesFragment;
@@ -261,4 +263,16 @@ public class Home extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+/*    @Override
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_registration, container, false);
+        Button button = (Button) view.findViewById(R.id.btnLinkToRegister);
+        button.setOnClickListener(new onClickListener() {
+           @Override
+            public void onClick(View v) {
+
+           }
+        });
+        return view;
+    }*/
 }
