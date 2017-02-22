@@ -37,7 +37,6 @@
                 android:id="@+id/dropdown_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/progress_array"
                 android:layout_marginTop="18dp" />
 
             <LinearLayout
@@ -57,7 +56,6 @@
                 android:id="@+id/dropdown_penyidik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/penyidik_array"
                 android:layout_marginTop="18dp" />
 
             <LinearLayout
@@ -140,13 +138,20 @@
                     android:textStyle="normal|bold" />
             </LinearLayout>
 
-            <EditText
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/new_case_kasus_dimulai"
-                android:textSize="14dp"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="15dp" />
+                android:hint="Pilih tanggal"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:textSize="13dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/result_date"
+                android:paddingLeft="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

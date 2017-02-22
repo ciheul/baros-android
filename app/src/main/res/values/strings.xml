@@ -6,6 +6,7 @@
     <string name="section_format_str">Hello World from section: %1$s</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="app_new_case">Kasus Baru</string>
+    <string name="search_case">Cari Kasus</string>
 
     <string name="progress">Progress</string>
     <string name="penyidik">Penyidik</string>
