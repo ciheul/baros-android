@@ -138,14 +138,13 @@
                     android:textStyle="normal|bold" />
             </LinearLayout>
 
-            <Button
+            <DatePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/new_case_kasus_dimulai"
-                android:hint="Pilih tanggal"
-                android:datePickerMode="spinner"
+                android:id="@+id/date_picker"
                 android:calendarViewShown="false"
-                android:textSize="13dp"/>
+                android:datePickerMode="spinner">
+            </DatePicker>
 
             <TextView
                 android:layout_width="match_parent"

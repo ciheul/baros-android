@@ -1,6 +1,7 @@
 package com.example.ciheul.baros;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,16 +19,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.io.SessionOutputBuffer;
+import cz.msebera.android.httpclient.util.TextUtils;
 
 import static android.R.layout.simple_spinner_item;
 
@@ -59,44 +69,16 @@ public class AddNewCase extends AppCompatActivity {
 
     // Date picker
     DatePickerDialog datePickerDialog;
+    HashMap<Integer,String> penyidikMap = new HashMap<Integer, String>();
+    HashMap<Integer,String> progressMap = new HashMap<Integer, String>();
+
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_case);
-
-        // initiate the date picker and button
-        final Button dateET = (Button) findViewById(R.id.new_case_kasus_dimulai);
-
-        // perform click event date picker
-        dateET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                // NOTE: January = 0;
-                java.util.Calendar calendar = java.util.Calendar.getInstance();
-                int mYear = calendar.get(java.util.Calendar.YEAR);
-                int mMonth = calendar.get(java.util.Calendar.MONTH);
-                int mDay = calendar.get(java.util.Calendar.DAY_OF_MONTH);
-
-                datePickerDialog = new DatePickerDialog(AddNewCase.this,
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-
-                                dateText = (TextView)findViewById(R.id.result_date);
-                                dateText.setText("Tanggal: " + dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
-
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
-        });
-
         // Get progress and penyidik from api
         getDataDropdown();
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_new_case);
 
          // Instantiate progress dialog object
         prgDialog = new ProgressDialog(this);
@@ -104,6 +86,19 @@ public class AddNewCase extends AppCompatActivity {
         prgDialog.setMessage("Please wait ...");
         // Set cancelable as false
         prgDialog.setCancelable(false);
+
+        // Set edit text
+        lpET = (EditText)findViewById(R.id.new_case_lp);
+        perkaraET = (EditText)findViewById(R.id.new_case_perkara);
+        uraianET = (EditText)findViewById(R.id.new_case_uraian);
+        pelaporET = (EditText)findViewById(R.id.new_case_pelapor);
+        terlaporET = (EditText)findViewById(R.id.new_case_terlapor);
+        spdpET = (EditText)findViewById(R.id.new_case_spdp);
+        hambatanET = (EditText)findViewById(R.id.new_case_hambatan);
+        keteranganET = (EditText)findViewById(R.id.new_case_keterangan);
+        dateText = (TextView)findViewById(R.id.result_date);
+        progressSP = (Spinner)findViewById(R.id.dropdown_progress);
+
     }
 
     public void getDataDropdown() {
@@ -138,7 +133,8 @@ public class AddNewCase extends AppCompatActivity {
                             hasil.setProgressId((Integer) progress.getJSONArray(i).get(0));
                             hasil.setProgressName((String) progress.getJSONArray(i).get(1));
 
-                            progressName.add((String) progress.getJSONArray(i).get(1));
+                            progressMap.put(hasil.getProgressId(), hasil.getProgressName());
+                            progressName.add(hasil.getProgressName());
                         }
                     }
 
@@ -151,7 +147,8 @@ public class AddNewCase extends AppCompatActivity {
                         hasil.setPenyidikId((Integer) object.get("pk"));
                         hasil.setPenyidikName((String) fields.get("name"));
 
-                        penyidikName.add((String) fields.get("name"));
+                        penyidikMap.put(hasil.getPenyidikId(), hasil.getPenyidikName());
+                        penyidikName.add(hasil.getPenyidikName());
                     }
 
                 } catch (JSONException e) {
@@ -171,7 +168,18 @@ public class AddNewCase extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                // When Http response code is '404'
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code is '500'
+                else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Error 500", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code other than 404, 500
+                else{
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -192,20 +200,83 @@ public class AddNewCase extends AppCompatActivity {
 
 
         if (id == R.id.save_new_case) {
-            // do save new case
-            return true;
-        }
+            // get all data
+            String lp = lpET.getText().toString();
+            String perkara = perkaraET.getText().toString();
+            String uraian = uraianET.getText().toString();
+            String pelapor = pelaporET.getText().toString();
+            String terlapor = terlaporET.getText().toString();
+            String spdp = spdpET.getText().toString();
+            String hambatan = hambatanET.getText().toString();
+            String keterangan = keteranganET.getText().toString();
 
-        if (id == R.id.dropdown_progress) {
-            System.out.println("kyaa");
+            Spinner proSpinner = (Spinner) findViewById(R.id.dropdown_progress);
+            String proText = proSpinner.getSelectedItem().toString();
+            Integer proId = null;
+
+            // get progress id
+            for (Map.Entry entry:progressMap.entrySet()) {
+                if (proText.equals(entry.getValue())) {
+                    proId = (Integer) entry.getKey();
+                    break;
+                }
+            }
+
+            Spinner penSpinner = (Spinner) findViewById(R.id.dropdown_penyidik);
+            String penText = penSpinner.getSelectedItem().toString();
+            Integer penId = null;
+
+            // get penyidik id
+            for (Map.Entry entry:penyidikMap.entrySet()) {
+                if (penText.equals(entry.getValue())) {
+                    penId = (Integer) entry.getKey();
+                    break;
+                }
+            }
+
+            // check required params
+            // lp, perkara, uraian
+            if(TextUtils.isEmpty(lp)) {
+                lpET.setError("Wajib diisi");
+            }
+
+            if(TextUtils.isEmpty(perkara)) {
+                perkaraET.setError("Wajib diisi");
+            }
+
+            if(TextUtils.isEmpty(uraian)) {
+                uraianET.setError("Wajib diisi");
+            }
+
+            DatePicker datePicker = (DatePicker)findViewById(R.id.date_picker);
+            // change format month (ex: 2 -> 02)
+            DecimalFormat formatter = new DecimalFormat("00");
+
+            String day = String.valueOf(datePicker.getDayOfMonth());
+            String month = formatter.format(datePicker.getMonth() + 1);
+            String year = String.valueOf(datePicker.getYear());
+
+            String date = String.valueOf(year + "-" + month + "-" + day);
+
+            RequestParams params = new RequestParams();
+            params.put("lp_number", lp);
+            params.put("lp_date", date);
+            params.put("lp_type", perkara);
+            params.put("reported_by", pelapor);
+            params.put("reported", terlapor);
+            params.put("description", uraian);
+            params.put("spdp", spdp);
+            params.put("obstacle", hambatan);
+            params.put("progress", proId);
+            params.put("personnel", penId);
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-    // temp spinner information
+     // temp spinner information
     public class Hasil {
         private int progressId;
         private String progressName;
