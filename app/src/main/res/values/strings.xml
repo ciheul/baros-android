@@ -5,4 +5,44 @@
     <string name="action_settings">Settings</string>
     <string name="section_format_str">Hello World from section: %1$s</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="app_new_case">Kasus Baru</string>
+    <string name="search_case">Cari Kasus</string>
+
+    <string name="progress">Progress</string>
+    <string name="penyidik">Penyidik</string>
+    <string name="lp">LP</string>
+    <string name="perkara">Perkara</string>
+    <string name="uraian">Uraian</string>
+    <string name="kasus_dimulai">Kasus Dimulai</string>
+    <string name="pelapor">Pelapor</string>
+    <string name="terlapor">Terlapor</string>
+    <string name="spdp">SPDP</string>
+    <string name="hambatan">Hambatan</string>
+    <string name="keterangan">Keterangan</string>
+
+    <string-array name="progress_array">
+        <item>Tanpa Kasus</item>
+        <item>Klarifikasi</item>
+        <item>Pemanggilan</item>
+        <item>SP2HP</item>
+        <item>SP2HP A2</item>
+        <item>Pelimpahan</item>
+        <item>P21</item>
+        <item>SP3</item>
+    </string-array>
+
+    <string-array name="penyidik_array">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+    </string-array>
+
 </resources>
+
+
+

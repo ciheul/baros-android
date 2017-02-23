@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_add_new_case"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.ciheul.baros.AddNewCase"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/progress"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/dropdown_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/penyidik"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/dropdown_penyidik"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/lp"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_lp"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/perkara"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_perkara"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/uraian"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_uraian"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/kasus_dimulai"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_picker"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner">
+            </DatePicker>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/result_date"
+                android:paddingLeft="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/pelapor"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_pelapor"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/terlapor"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_terlapor"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/spdp"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_spdp"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/hambatan"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_hambatan"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/keterangan"
+                    android:textSize="14dp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_case_keterangan"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

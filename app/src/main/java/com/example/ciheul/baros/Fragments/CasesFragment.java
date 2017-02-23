@@ -1,19 +1,22 @@
 package com.example.ciheul.baros.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ciheul.baros.AddNewCase;
 import com.example.ciheul.baros.R;
 
 /**
  * Created by ciheul on 13/02/17.
  * A placeholder fragment containing a simple view.
  */
-public class CasesFragment extends android.support.v4.app.Fragment {
+public class CasesFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -48,7 +51,21 @@ public class CasesFragment extends android.support.v4.app.Fragment {
 
         textView.setText(getString(R.string.section_format_str, getArguments().getString(ARG_CONTENT_TEXT)));
         // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+        Button button = (Button) rootView.findViewById(R.id.new_case_btn);
+        button.setOnClickListener(this);
+
         return rootView;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.new_case_btn:
+                Intent intent = new Intent(v.getContext(), AddNewCase.class);
+                startActivity(intent);
+                break;
+
+        }
+    }
 }

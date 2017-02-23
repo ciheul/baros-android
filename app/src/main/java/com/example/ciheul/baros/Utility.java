@@ -27,4 +27,5 @@ public class Utility {
         return txt!=null && txt.trim().length()>0 ? true : false;
 
     }
+    
 }

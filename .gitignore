@@ -1,0 +1,7 @@
+# Gradle generated files
+.gradle/
+
+# User-specific configurations
+.idea/workspace.xml
+.idea/misc.xml
+.idea/vcs.xml
