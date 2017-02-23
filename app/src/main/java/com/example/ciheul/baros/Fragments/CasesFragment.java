@@ -104,8 +104,10 @@ public class CasesFragment extends android.support.v4.app.Fragment {
                 // Add whatever code is needed to append new items to the bottom of the list
 
                 //dummy test
-                //if (page == 3) {loadNextDataFromApi(79, view);return;}
-                //System.out.println(recyclerView.getScrollState()+"cimol");
+                /*if (page == 3) {
+                 loadNextDataFromApi(79, view);return;
+                 }
+                System.out.println(recyclerView.getScrollState()+"cimol");*/
                 loadNextDataFromApi(page, view);
 
                 //System.out.println("lasted::"+this.getLastVisibleItem(recyclerView.getDrawableState()));

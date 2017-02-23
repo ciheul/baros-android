@@ -10,7 +10,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa4c730-db6c-4742-b7ca-a66ee5b0e74e" name="Default" comment="" />
+    <list default="true" id="bfa4c730-db6c-4742-b7ca-a66ee5b0e74e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java" />
+    </list>
     <ignored path="baros-android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,15 +47,15 @@
       <file leaf-file-name="CasesFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+            <state relative-caret-position="285">
+              <caret line="109" column="76" selection-start-line="106" selection-start-column="16" selection-end-line="109" selection-end-column="76" />
               <folding>
                 <element signature="method#firstDataLoader#0;class#CasesFragment#0" expanded="false" />
-                <element signature="e#10590#10591#0" expanded="true" />
-                <element signature="e#10627#10628#0" expanded="true" />
-                <element signature="e#12787#12812#0" expanded="true" />
-                <element signature="e#12814#13178#0" expanded="true" />
-                <element signature="e#13177#13178#0" expanded="true" />
+                <element signature="e#10626#10627#0" expanded="true" />
+                <element signature="e#10663#10664#0" expanded="true" />
+                <element signature="e#12823#12848#0" expanded="true" />
+                <element signature="e#12850#13214#0" expanded="true" />
+                <element signature="e#13213#13214#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2479,11 +2481,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#firstDataLoader#0;class#CasesFragment#0" expanded="false" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10627#10628#0" expanded="true" />
-            <element signature="e#12787#12812#0" expanded="true" />
-            <element signature="e#12814#13178#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
+            <element signature="e#10626#10627#0" expanded="true" />
+            <element signature="e#10663#10664#0" expanded="true" />
+            <element signature="e#12823#12848#0" expanded="true" />
+            <element signature="e#12850#13214#0" expanded="true" />
+            <element signature="e#13213#13214#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2671,15 +2673,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+        <state relative-caret-position="285">
+          <caret line="109" column="76" selection-start-line="106" selection-start-column="16" selection-end-line="109" selection-end-column="76" />
           <folding>
             <element signature="method#firstDataLoader#0;class#CasesFragment#0" expanded="false" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10627#10628#0" expanded="true" />
-            <element signature="e#12787#12812#0" expanded="true" />
-            <element signature="e#12814#13178#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
+            <element signature="e#10626#10627#0" expanded="true" />
+            <element signature="e#10663#10664#0" expanded="true" />
+            <element signature="e#12823#12848#0" expanded="true" />
+            <element signature="e#12850#13214#0" expanded="true" />
+            <element signature="e#13213#13214#0" expanded="true" />
           </folding>
         </state>
       </provider>
