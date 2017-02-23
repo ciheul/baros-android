@@ -10,9 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa4c730-db6c-4742-b7ca-a66ee5b0e74e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ciheul/baros/Fragments/CasesFragment.java" />
-    </list>
+    <list default="true" id="bfa4c730-db6c-4742-b7ca-a66ee5b0e74e" name="Default" comment="" />
     <ignored path="baros-android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
