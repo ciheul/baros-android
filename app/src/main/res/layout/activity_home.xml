@@ -36,15 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/AppTheme.TabFont">
-            <!--<android.support.design.widget.TabItem
-                android:text="@string/section_format"
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <android.support.design.widget.TabItem
-                android:icon="@drawable/ic_action_name"
-                android:layout_width="10dp"
-                android:layout_height="10dp"/>-->
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -68,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/sym_action_chat" />
+        app:srcCompat="@android:drawable/sym_action_chat"
+        android:visibility="gone" />
 
 
 </android.support.design.widget.CoordinatorLayout>
