@@ -2,7 +2,10 @@ package com.example.ciheul.baros.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.ciheul.baros.Adapters.CasesAdapter;
 import com.example.ciheul.baros.EndlessScrollListener;
+import com.example.ciheul.baros.FilterCase;
 import com.example.ciheul.baros.RestClient;
 
 import com.example.ciheul.baros.AddNewCase;
@@ -79,9 +83,11 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
         // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
         textView.setMovementMethod(new ScrollingMovementMethod());*/
 
-        Button button = (Button) rootView.findViewById(R.id.new_case_btn);
-        button.setOnClickListener(this);
+        Button newCaseBtn = (Button) rootView.findViewById(R.id.new_case_btn);
+        newCaseBtn.setOnClickListener(this);
 
+        Button filterBtn = (Button) rootView.findViewById(R.id.case_filter_btn);
+        filterBtn.setOnClickListener(this);
 
         /**/
 
@@ -130,7 +136,10 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                 Intent intent = new Intent(v.getContext(), AddNewCase.class);
                 startActivity(intent);
                 break;
-
+            case R.id.case_filter_btn:
+                Intent intentFilter = new Intent(v.getContext(), FilterCase.class);
+                startActivity(intentFilter);
+                break;
         }
     }
 
@@ -266,6 +275,7 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                System.out.println("stats-e:"+statusCode);
                 if(statusCode == 404) {
                     /*Toast.makeText(getActivity(),
                             "Requested resource not found",

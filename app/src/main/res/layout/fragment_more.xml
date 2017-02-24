@@ -1,70 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
 
-    <TextView
-        android:text="Arsip"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/archiveLink"
-        android:contextClickable="true"
-        android:clickable="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:elevation="20dp"/>
+        android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        <!--Arsip-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
 
-    <TextView
-        android:text="Ubah Profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/changeProfile"
-        android:contextClickable="true"
-        android:clickable="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:padding="10dp"
-        android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+                <TextView
+                    android:id="@+id/archiveLink"
+                    android:text="Arsip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:elevation="20dp"/>
 
-    <TextView
-        android:text="Ubah Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/changePassword"
-        android:contextClickable="true"
-        android:clickable="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:padding="10dp"
-        android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Anda dapat melihat daftar kasus yang telah diarsipkan"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
 
-    <TextView
-        android:text="Logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/logoutLink"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:padding="10dp"
-        android:textSize="18sp"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Case History-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="RIwayat Kasus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/historyCases"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Riwayat Kasus yang terkait dengan akun anda, seperti komentar, kasus yang ditangani/di atasi"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Profile-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Ubah Profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/changeProfile"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubah nama, email, no telp, deskripsi, etc."
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Password-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Ubah Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/changePassword"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubah password akun anda"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Logout-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/logoutLink"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Akhiri sesi"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Release info-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Release Info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/releaseInfo"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Current device version : release-0.1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

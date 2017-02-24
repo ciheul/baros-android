@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".Home"
-            android:label="@string/title_activity_home"
+            android:label="Reskrim Cimahi"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,15 @@
             android:label="@string/app_new_case">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ciheul.baros.Login" />
+                android:value="com.example.ciheul.baros.Home" />
+
+        </activity>
+
+        <activity android:name=".FilterCase"
+            android:label="Filter">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.Home" />
 
         </activity>
     </application>
