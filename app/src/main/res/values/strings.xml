@@ -20,27 +20,7 @@
     <string name="hambatan">Hambatan</string>
     <string name="keterangan">Keterangan</string>
 
-    <string-array name="progress_array">
-        <item>Tanpa Kasus</item>
-        <item>Klarifikasi</item>
-        <item>Pemanggilan</item>
-        <item>SP2HP</item>
-        <item>SP2HP A2</item>
-        <item>Pelimpahan</item>
-        <item>P21</item>
-        <item>SP3</item>
-    </string-array>
-
-    <string-array name="penyidik_array">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
-        <item>G</item>
-        <item>H</item>
-    </string-array>
+    <string name="snack_bar_action">TOP</string>
 
 </resources>
 

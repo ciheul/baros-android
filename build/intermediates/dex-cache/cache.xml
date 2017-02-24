@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="7ec218eb75b35c891ed8edef0b2dbf98c5081e20">
+        sha1="2cce20ec6a73b8092d4e39c085b505481bc42db1">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_17acb7726887d51f98646a139ca4848cc7b3ce2e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ciheul/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/android-async-http-1.4.9_94093583df1226bb2882eb2fec73f199a4ca8712/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,24 +39,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_cef42e92f9032869e6e9f91a2f2d212616b7d46d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ciheul/.gradle/caches/modules-2/files-2.1/cz.msebera.android/httpclient/4.3.6/526a9f794eab830eae4f23a62c572878b3f491ab/httpclient-4.3.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpclient-4.3.6_6c18af37302789f1961281b98fc3c8b3ea688ba3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -81,6 +54,60 @@
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_08aa90c34725d498eb57fd1233b550baf43bd779/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_5d74e8fdba03229283b13c61dad9820f66ee2237/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_6d384180579bc530572ab3a0c478d28c80fd547a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aac88ea0ad89f1936e3168a677f82c0eb33e7bda">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ffea2d817ccd310a2f1663649f106a2b5363dc03/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/android-async-http-1.4.9_94093583df1226bb2882eb2fec73f199a4ca8712/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_cef42e92f9032869e6e9f91a2f2d212616b7d46d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/.gradle/caches/modules-2/files-2.1/cz.msebera.android/httpclient/4.3.6/526a9f794eab830eae4f23a62c572878b3f491ab/httpclient-4.3.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpclient-4.3.6_6c18af37302789f1961281b98fc3c8b3ea688ba3/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,24 +147,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/ciheul/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_5d74e8fdba03229283b13c61dad9820f66ee2237/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_6d384180579bc530572ab3a0c478d28c80fd547a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -153,15 +162,6 @@
         revision="25.0.2"
         sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_42fd3024e643bc7276e3e91407c9fed5d10e21db/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="63fc3692fe61227a33ca2c6dd4cabc325ee8a408">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ffea2d817ccd310a2f1663649f106a2b5363dc03/classes.dex" />
     </item>
 
 </items>
