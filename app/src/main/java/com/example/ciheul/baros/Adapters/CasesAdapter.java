@@ -1,5 +1,7 @@
 package com.example.ciheul.baros.Adapters;
 
+import android.content.Intent;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ciheul.baros.CaseDetail;
 import com.example.ciheul.baros.Fragments.CasesFragment;
 import com.example.ciheul.baros.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.R.attr.name;
 
 /**
  * Created by ciheul on 21/02/17.
@@ -45,6 +50,8 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
         public TextView itemCaseType;
         public TextView itemCaseStatus;
 
+        public TextView detailProgress;
+
         public Snackbar snackbar;
 
         public ViewHolder(View itemView) {
@@ -61,9 +68,51 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
                         int position = getAdapterPosition();
+                        int pk = 0;
+                        String desc = null;
+                        String number = null;
+                        String reported = null;
+                        String type = null;
+                        String progress = null;
+                        String lp_date = null;
+                        String reported_by = null;
+                        String name = null;
+
+                        try {
+                            pk = (int) listOfCases.getJSONObject(position).get("pk");
+                            desc = (String) listOfCases.getJSONObject(position).get("description");
+                            number = (String) listOfCases.getJSONObject(position).get("number");
+                            reported = (String) listOfCases.getJSONObject(position).get("reported");
+                            type = (String) listOfCases.getJSONObject(position).get("type");
+                            progress = (String) listOfCases.getJSONObject(position).get("progress");
+                            lp_date = (String) listOfCases.getJSONObject(position).get("lp_date");
+                            reported_by = (String) listOfCases.getJSONObject(position).get("reported_by");
+
+                            if (listOfCases.getJSONObject(position).get("personnel_name").equals(null)) {
+                                name = "Penyidik belum dipilih.";
+                            } else {
+                                name = (String)listOfCases.getJSONObject(position).get("personnel_name");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         // TODO go INTENT case detail view class
-                        Snackbar.make(v, "Click detected on item " + position,
+                        Intent intent = new Intent(v.getContext(), CaseDetail.class);
+                        intent.putExtra("pk", pk);
+                        intent.putExtra("description", desc);
+                        intent.putExtra("number", number);
+                        intent.putExtra("reported", reported);
+                        intent.putExtra("type", type);
+                        intent.putExtra("progress", progress);
+                        intent.putExtra("lp_date", lp_date);
+                        intent.putExtra("reported_by", reported_by);
+                        intent.putExtra("personnel_name", name);
+
+                        v.getContext().startActivity(intent);
+
+/*                        Snackbar.make(v, "Click detected on item " + position,
                                 Snackbar.LENGTH_LONG)
 //                                .setAction("Action", null).show();
                                 .setAction(R.string.snack_bar_action, new View.OnClickListener() {
@@ -71,7 +120,7 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
                                     public void onClick(View v) {
                                         v.getRootView().scrollTo(0,0);
                                     }
-                                }).show();
+                                }).show();*/
                     }
 
                 });
@@ -81,7 +130,6 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
             }
         }
     }
-
 
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
