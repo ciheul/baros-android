@@ -6,8 +6,9 @@
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
         android:text="Progress Status"
@@ -16,12 +17,20 @@
         android:id="@+id/textView3"
         android:paddingLeft="10dp"
         android:paddingBottom="5dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressStatusDropDown" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="10dp" />
 
     <TextView
         android:text="Penyidik"
@@ -30,12 +39,20 @@
         android:id="@+id/textView4"
         android:paddingLeft="10dp"
         android:paddingBottom="5dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/penyidikDropDown" />
+        android:id="@+id/personnelDropDown" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="10dp" />
 
     <TextView
         android:text="Waktu"
@@ -44,62 +61,93 @@
         android:id="@+id/textView5"
         android:paddingLeft="10dp"
         android:paddingBottom="5dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:id="@+id/radio_grouper">
 
         <RadioButton
-            android:text="RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton" />
+            android:id="@+id/radioButton"
+            android:text="Semua"
+            android:checked="true" />
 
         <RadioButton
-            android:text="RadioButton"
+            android:text="Bulan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioButton2" />
 
         <RadioButton
-            android:text="RadioButton"
+            android:text="Rentang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton3" />
+            android:id="@+id/radioButton3"
+            android:elevation="1dp" />
     </RadioGroup>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/monthly_radio"
-        android:gravity="center">
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="10dp" />
 
-        <DatePicker
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Bulan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewStartDate"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:visibility="gone" />
+            <DatePicker
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/datePicker"
-            android:layout_weight="1" />
+            android:id="@+id/datePickerMonthly"
+            android:layout_weight="1"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Sampai tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewEndTime"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:visibility="gone" />
+
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datePickerRange"
+                android:layout_weight="1"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/date_range_radio"
-        android:gravity="center">
-
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/datePicker2"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-
-</LinearLayout>
 
 </ScrollView>

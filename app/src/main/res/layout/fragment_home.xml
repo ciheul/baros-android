@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_card_demo"
     android:layout_width="match_parent"
@@ -61,7 +62,7 @@
             android:background="@android:color/darker_gray"/>
 
         <TextView
-            android:text="773 Kasus ditampilkan"
+            android:text="Tidak ada kasus untuk ditampilkan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/caseCounter"
@@ -90,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            >
+            android:id="@+id/loadingHolder">
             <ProgressBar android:id="@+id/firstLookLoader"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -107,6 +108,34 @@
                 android:paddingRight="5dp"
                 android:layout_marginBottom="10dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/emptySetsHolder"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                app:srcCompat="@drawable/no_cases"
+                android:id="@+id/imageView"
+                android:layout_gravity="center"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:text="Tidak ada kasus untuk ditampilkan"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

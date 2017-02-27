@@ -29,6 +29,7 @@ import com.example.ciheul.baros.Fragments.LeaderboardFragment;
 import com.example.ciheul.baros.Fragments.MoreFragment;
 import com.example.ciheul.baros.Fragments.PersonnelFragment;
 import com.example.ciheul.baros.Fragments.SearchFragment;
+import com.loopj.android.http.RequestParams;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -50,11 +51,22 @@ public class Home extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+    private RequestParams rParameters = new RequestParams();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // check filter data
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            for (String key: b.keySet()) {
+                System.out.println("Bundle"+key+""+b.get(key));
+                rParameters.put(key,b.get(key));
+            }
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,6 +87,10 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                // jump to tab page more
+                mViewPager.setCurrentItem(4);
+
             }
         });
 
@@ -181,7 +197,7 @@ public class Home extends AppCompatActivity {
             switch (position) {
                 case 0:{
                     content = "Daftar Kasus";
-                    return CasesFragment.newInstance(position, content);
+                    return CasesFragment.newInstance(position, content, rParameters);
                 }
                 case 1:{
                     content = "Leaderboard";

@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,10 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     private EndlessScrollListener scrollListener;
+    LinearLayout loadingHolder;
+    LinearLayout emptyHolder;
+
+    private static RequestParams rParameters = new RequestParams();
     TextView caseCounter;
 
 
@@ -63,12 +69,13 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static CasesFragment newInstance(int sectionNumber, String texta) {
+    public static CasesFragment newInstance(int sectionNumber, String texta, RequestParams params) {
         CasesFragment fragment = new CasesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putString(ARG_CONTENT_TEXT, texta);
         fragment.setArguments(args);
+        rParameters = params;
         return fragment;
     }
 
@@ -91,6 +98,9 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
 
         /**/
 
+        loadingHolder = (LinearLayout) rootView.findViewById(R.id.loadingHolder);
+        emptyHolder = (LinearLayout) rootView.findViewById(R.id.emptySetsHolder);
+
         caseCounter = (TextView) rootView.findViewById(R.id.caseCounter);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
@@ -100,10 +110,6 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
         recyclerView.setLayoutManager(layoutManager);
 
         firstDataLoader();
-
-//        recyclerView.setAdapter(adapter);
-
-        // TODO jangan lupa di tambahin elemen progress dialognya (kalau bisa bentuknya spt spin.js
 
         scrollListener = new EndlessScrollListener((LinearLayoutManager) layoutManager) {
             @Override
@@ -116,7 +122,13 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                  loadNextDataFromApi(79, view);return;
                  }
                 System.out.println(recyclerView.getScrollState()+"cimol");*/
-                loadNextDataFromApi(page, view);
+
+                RequestParams filterParams = new RequestParams();
+                if (rParameters != null) {
+                    filterParams = rParameters;
+                }
+
+                loadNextDataFromApi(page, view, filterParams);
 
                 //System.out.println("lasted::"+this.getLastVisibleItem(recyclerView.getDrawableState()));
             }
@@ -175,7 +187,7 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
      * --> Append the new data objects to the existing set of items inside the array of items
      * --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
      **/
-    public void loadNextDataFromApi(int offset, final RecyclerView rView) {
+    public void loadNextDataFromApi(int offset, final RecyclerView rView, RequestParams params) {
         System.out.println("loadNextDataFromAPI, "+offset);
 
         ViewGroup.LayoutParams para = recyclerView.getLayoutParams();
@@ -188,8 +200,9 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
         recyclerView.setLayoutParams(para);
         System.out.println("hahau"+para.height+"|"+getDeviceResoluition().heightPixels+"|"+getDeviceResoluition().widthPixels);
 
-        RequestParams params = new RequestParams();
         params.put("p",offset+1);
+        loadingHolder.setVisibility(View.VISIBLE);
+        emptyHolder.setVisibility(View.GONE);
 
         RestClient.get("case/list/", params, new AsyncHttpResponseHandler() {
 
@@ -198,6 +211,7 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                 System.out.println("yay!");
                 String s = new String(responseBody);
                 System.out.println(s);
+                loadingHolder.setVisibility(View.GONE);
 
                 try {
                     // JSON Object data sets to append and notify
@@ -226,7 +240,7 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                 recyclerView.setLayoutParams(params);
 
                 System.out.println("ErrorCode:" + statusCode);
-
+                loadingHolder.setVisibility(View.GONE);
                 if(statusCode == 404) {
                     /*Toast.makeText(getActivity(),
                             "Requested resource not found",
@@ -251,13 +265,18 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
      * */
     private void firstDataLoader() {
         RequestParams params = new RequestParams();
-        params.put("p",1);
+        if (rParameters != null) {
+            params = rParameters;
+        }
 
+        params.put("p",1);
+        loadingHolder.setVisibility(View.VISIBLE);
+        emptyHolder.setVisibility(View.GONE);
         RestClient.get("case/list/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String s = new String(responseBody);
-
+                loadingHolder.setVisibility(View.GONE);
                 try {
                     // store data collection
                     JSONObject obj = new JSONObject(s);
@@ -266,6 +285,9 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                     adapter.notifyDataSetChanged();
                     caseCollection = obj;
                     caseCounter.setText(""+obj.get("total_cases")+" Kasus ditampilkan");
+                    if (obj.get("total_cases").toString().equals("0")) {
+                        emptyHolder.setVisibility(View.VISIBLE);
+                    }
                     //merge(obj);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -276,6 +298,8 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 System.out.println("stats-e:"+statusCode);
+                loadingHolder.setVisibility(View.GONE);
+                // TODO needErrorHolder
                 if(statusCode == 404) {
                     /*Toast.makeText(getActivity(),
                             "Requested resource not found",
@@ -331,6 +355,9 @@ public class CasesFragment extends android.support.v4.app.Fragment implements Vi
                 if (key.equals("total_cases") && temp.get("total_cases") instanceof Integer) {
                     caseCollection.put("total_cases",temp.get("total_cases"));
                     caseCounter.setText(""+temp.get("total_cases")+" Kasus ditampilkan");
+                    if (temp.get("total_cases").toString().equals("0")) {
+                        emptyHolder.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 int scrollTo = adapter.getItemCount() - 13;
