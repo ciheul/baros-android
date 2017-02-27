@@ -44,6 +44,13 @@
                 android:value="com.example.ciheul.baros.Login" />
 
         </activity>
+        <activity android:name=".CaseDetail"
+            android:label="@string/app_case_detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.Login" />
+
+        </activity>
     </application>
 
 </manifest>
