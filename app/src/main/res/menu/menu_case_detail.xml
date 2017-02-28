@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/case_archive"
+            android:title="Arsipkan Kasus"
+            app:showAsAction="collapseActionView"
+            android:orderInCategory="0"/>
+
+    <item
+        android:id="@+id/edit_case"
+        android:title="Perbarui Kasus"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="0"/>
+
+    <item
+        android:id="@+id/upload_document"
+        android:title="Unggah Dokumen"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="0"/>
+
+    <item
+        android:id="@+id/upload_tersangka"
+        android:title="Unggah Tersangka"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="0"/>
+
+</menu>
