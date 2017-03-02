@@ -51,10 +51,6 @@ public class AddNewCase extends AppCompatActivity {
     // Error Msg TextView Object
     TextView errorMsg;
 
-    // Dropdown object
-    Spinner progressSP;
-    Spinner penyidikSP;
-
     // Edit view object
     EditText lpET;
     EditText perkaraET;
@@ -71,7 +67,6 @@ public class AddNewCase extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     HashMap<Integer,String> penyidikMap = new HashMap<Integer, String>();
     HashMap<Integer,String> progressMap = new HashMap<Integer, String>();
-
 
     protected void onCreate(Bundle savedInstanceState) {
         // Get progress and penyidik from api
@@ -97,8 +92,6 @@ public class AddNewCase extends AppCompatActivity {
         hambatanET = (EditText)findViewById(R.id.new_case_hambatan);
         keteranganET = (EditText)findViewById(R.id.new_case_keterangan);
         dateText = (TextView)findViewById(R.id.result_date);
-        progressSP = (Spinner)findViewById(R.id.dropdown_progress);
-
     }
 
     public void getDataDropdown() {
@@ -264,6 +257,7 @@ public class AddNewCase extends AppCompatActivity {
             params.put("lp_type", perkara);
             params.put("reported_by", pelapor);
             params.put("reported", terlapor);
+            params.put("note", keterangan);
             params.put("description", uraian);
             params.put("spdp", spdp);
             params.put("obstacle", hambatan);

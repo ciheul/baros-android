@@ -56,8 +56,12 @@
             android:label="@string/app_case_detail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ciheul.baros.Login" />
+                android:value="com.example.ciheul.baros.Home" />
 
+        </activity>
+
+        <activity android:name=".EditCase"
+            android:label="@string/app_edit_case">
         </activity>
     </application>
 

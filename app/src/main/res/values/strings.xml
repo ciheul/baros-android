@@ -8,6 +8,7 @@
     <string name="app_new_case">Kasus Baru</string>
     <string name="search_case">Cari Kasus</string>
     <string name="app_case_detail">Detail Kasus</string>
+    <string name="app_edit_case">Perbarui Kasus</string>
 
     <string name="progress">Progress</string>
     <string name="penyidik">Penyidik</string>

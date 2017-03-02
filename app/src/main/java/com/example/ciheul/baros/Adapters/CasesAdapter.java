@@ -69,31 +69,9 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
                     @Override public void onClick(View v) {
                         int position = getAdapterPosition();
                         int pk = 0;
-                        String desc = null;
-                        String number = null;
-                        String reported = null;
-                        String type = null;
-                        String progress = null;
-                        String lp_date = null;
-                        String reported_by = null;
-                        String name = null;
 
                         try {
                             pk = (int) listOfCases.getJSONObject(position).get("pk");
-                            desc = (String) listOfCases.getJSONObject(position).get("description");
-                            number = (String) listOfCases.getJSONObject(position).get("number");
-                            reported = (String) listOfCases.getJSONObject(position).get("reported");
-                            type = (String) listOfCases.getJSONObject(position).get("type");
-                            progress = (String) listOfCases.getJSONObject(position).get("progress");
-                            lp_date = (String) listOfCases.getJSONObject(position).get("lp_date");
-                            reported_by = (String) listOfCases.getJSONObject(position).get("reported_by");
-
-                            if (listOfCases.getJSONObject(position).get("personnel_name").equals(null)) {
-                                name = "Penyidik belum dipilih.";
-                            } else {
-                                name = (String)listOfCases.getJSONObject(position).get("personnel_name");
-                            }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -101,15 +79,6 @@ public class CasesAdapter extends RecyclerView.Adapter<CasesAdapter.ViewHolder> 
                         // TODO go INTENT case detail view class
                         Intent intent = new Intent(v.getContext(), CaseDetail.class);
                         intent.putExtra("pk", pk);
-                        intent.putExtra("description", desc);
-                        intent.putExtra("number", number);
-                        intent.putExtra("reported", reported);
-                        intent.putExtra("type", type);
-                        intent.putExtra("progress", progress);
-                        intent.putExtra("lp_date", lp_date);
-                        intent.putExtra("reported_by", reported_by);
-                        intent.putExtra("personnel_name", name);
-
                         v.getContext().startActivity(intent);
 
 /*                        Snackbar.make(v, "Click detected on item " + position,
