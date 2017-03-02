@@ -16,11 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-<<<<<<< HEAD
-        sha1="d548b8d7d3c12ba0f1f2510735556650ef935a69">
-=======
-        sha1="8f8d9a1cfac665d10b97985bce701d318c172836">
->>>>>>> af6188b5fb2e8d99998876d76950f99fc561d84f
+        sha1="f3775e624babd10cdd704d28b8e140f112b54f87">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_17acb7726887d51f98646a139ca4848cc7b3ce2e/classes.dex" />
     </item>
     <item
@@ -124,21 +120,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/ciheul/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_5d74e8fdba03229283b13c61dad9820f66ee2237/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/ciheul/Projects/baros-android/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_6d384180579bc530572ab3a0c478d28c80fd547a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ciheul/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_5d74e8fdba03229283b13c61dad9820f66ee2237/classes.dex" />
     </item>
     <item
         is-multidex="true"
