@@ -59,6 +59,14 @@
                 android:value="com.example.ciheul.baros.Login" />
 
         </activity>
+
+        <activity android:name=".ArchiveList"
+            android:label="Daftar Arsip">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.Home" />
+
+        </activity>
     </application>
 
 </manifest>

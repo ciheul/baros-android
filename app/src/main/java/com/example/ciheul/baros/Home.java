@@ -53,7 +53,9 @@ public class Home extends AppCompatActivity {
     private TabLayout tabLayout;
     private RequestParams rParameters = new RequestParams();
 
-
+    /**
+     * TODO saat onCreate jangan lupa untuk menambahkan logic untuk melihat session authenticate user
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +181,7 @@ public class Home extends AppCompatActivity {
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
+     * TODO tambahkan logic privilege user (superuser, personnel, people, guest
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

@@ -20,7 +20,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/archiveSegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,7 +37,8 @@
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
                     android:textSize="18sp"
-                    android:elevation="20dp"/>
+                    android:elevation="20dp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -66,7 +68,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/caseHistorySegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,19 +77,66 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="RIwayat Kasus"
+                    android:text="Riwayat Kasus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/historyCases"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Riwayat Kasus yang terkait dengan akun anda, seperti komentar, kasus yang ditangani/di atasi"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="normal|italic"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Chat History-->
+        <android.support.v7.widget.CardView
+            android:foreground="?selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            cardBackgroundColor="@color/white"
+            cardCornerRadius="0dp"
+            cardElevation="0dp"
+            contentPadding="3dp"
+            android:id="@+id/chatHistorySegment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Riwayat Percakapan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chatCases"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Riwayat percakapan anda dengan penyidik mengenai kasus"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
@@ -110,7 +160,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/changeProfileSegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -118,14 +169,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="Ubah Profile"
+                    android:text="Ubah Profil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/changeProfile"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -155,7 +207,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/changePasswordSegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -170,7 +223,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -200,7 +254,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/logoutSegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -215,7 +270,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -244,7 +300,8 @@
             cardBackgroundColor="@color/white"
             cardCornerRadius="0dp"
             cardElevation="0dp"
-            contentPadding="3dp">
+            contentPadding="3dp"
+            android:id="@+id/releaseInfoSegment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -259,7 +316,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
