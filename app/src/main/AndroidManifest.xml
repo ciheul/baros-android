@@ -62,6 +62,9 @@
 
         <activity android:name=".EditCase"
             android:label="@string/app_edit_case">
+<!--            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.CaseDetail" />-->
         </activity>
 
         <activity android:name=".ArchiveList"
@@ -71,6 +74,14 @@
                 android:value="com.example.ciheul.baros.Home" />
 
         </activity>
+
+        <activity android:name=".ArchiveDetail"
+            android:label="Detail Arsip">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ciheul.baros.ArchiveList" />
+        </activity>
+
     </application>
 
 </manifest>

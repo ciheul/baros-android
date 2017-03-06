@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.ciheul.baros.CaseDetail;
+import com.example.ciheul.baros.ArchiveDetail;
 import com.example.ciheul.baros.R;
 
 import org.json.JSONArray;
@@ -58,7 +58,6 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.ViewHo
             itemCaseType = (TextView)itemView.findViewById(R.id.card_item_type);
             itemCaseStatus = (TextView)itemView.findViewById(R.id.case_item_status);
 
-
             try {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
@@ -72,6 +71,9 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.ViewHo
                         String lp_date = null;
                         String reported_by = null;
                         String name = null;
+                        String spdp = null;
+                        String obstacle = null;
+                        String note = null;
 
                         try {
                             pk = (int) listOfCases.getJSONObject(position).get("pk");
@@ -82,6 +84,9 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.ViewHo
                             progress = (String) listOfCases.getJSONObject(position).get("progress");
                             lp_date = (String) listOfCases.getJSONObject(position).get("lp_date");
                             reported_by = (String) listOfCases.getJSONObject(position).get("reported_by");
+                            spdp = (String) listOfCases.getJSONObject(position).get("spdp");
+                            obstacle = (String) listOfCases.getJSONObject(position).get("obstacle");
+                            note = (String) listOfCases.getJSONObject(position).get("note");
 
                             if (listOfCases.getJSONObject(position).get("personnel_name").equals(null)) {
                                 name = "Penyidik belum dipilih.";
@@ -94,7 +99,7 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.ViewHo
                         }
 
                         // TODO go INTENT case detail view class
-                        Intent intent = new Intent(v.getContext(), CaseDetail.class);
+                        Intent intent = new Intent(v.getContext(), ArchiveDetail.class);
                         intent.putExtra("pk", pk);
                         intent.putExtra("description", desc);
                         intent.putExtra("number", number);
@@ -104,6 +109,9 @@ public class ArchivesAdapter extends RecyclerView.Adapter<ArchivesAdapter.ViewHo
                         intent.putExtra("lp_date", lp_date);
                         intent.putExtra("reported_by", reported_by);
                         intent.putExtra("personnel_name", name);
+                        intent.putExtra("spdp", spdp);
+                        intent.putExtra("obstacle", obstacle);
+                        intent.putExtra("note", note);
 
                         v.getContext().startActivity(intent);
 

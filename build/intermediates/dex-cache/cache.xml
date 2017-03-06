@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
+        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8f40acea80d34d4b930fa24175bceb90c4715511">
+        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_17acb7726887d51f98646a139ca4848cc7b3ce2e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/ciheul/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/android-async-http-1.4.9_94093583df1226bb2882eb2fec73f199a4ca8712/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ciheul/Projects/baros-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f3775e624babd10cdd704d28b8e140f112b54f87">
-        <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_17acb7726887d51f98646a139ca4848cc7b3ce2e/classes.dex" />
     </item>
     <item
         is-multidex="true"
