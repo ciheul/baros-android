@@ -1,8 +1,10 @@
 package com.example.ciheul.baros;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ciheul.baros.Fragments.CasesFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -164,7 +167,36 @@ public class CaseDetail extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.case_archive) {
-            // do archive
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            alert.setMessage("Apakah Anda yakin untuk mengarsipkan kasus ini?")
+                    .setTitle("Arsipkan kasus");
+
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    System.out.println("klik ok");
+
+                    // Instantiate progress dialog object
+                    prgDialog = new ProgressDialog(CaseDetail.this);
+                    // Set progress dialog text
+                    prgDialog.setMessage("Please wait ...");
+                    // Set cancelable as false
+                    prgDialog.setCancelable(false);
+
+                    sendArchiveApi();
+
+                }
+            });
+
+            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            alert.show();
         }
 
         if (id == R.id.edit_case) {
@@ -208,5 +240,67 @@ public class CaseDetail extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendArchiveApi() {
+        // Show progress dialog
+        prgDialog.show();
+
+        RequestParams params = new RequestParams();
+
+        Bundle extras = getIntent().getExtras();
+        final int pk = Integer.parseInt(String.valueOf(extras.getInt("pk")));
+        params.put("pk", pk);
+
+        RestClient.post("case/delete/case/", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                // Hide Progress Dialog
+                prgDialog.hide();
+                String s = new String(responseBody);
+                System.out.println(s);
+
+                archiveList();
+                Toast.makeText(getApplicationContext(),"Kasus berhasil diarsipkan.", Toast.LENGTH_LONG).show();
+
+/*                try {
+                    // JSON Object
+                    JSONObject obj = new JSONObject(s);
+
+                    Toast.makeText(getApplicationContext(),"Kasus berhasil diarsipkan.", Toast.LENGTH_LONG).show();
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    Toast.makeText(getApplicationContext(), "Error Occured " +
+                            "[Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                }*/
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // Hide Progress Dialog
+                prgDialog.hide();
+                // When Http response code is '404'
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code is '500'
+                else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Internal server error. Please try again.", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code other than 404, 500
+                else{
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void archiveList() {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 }
