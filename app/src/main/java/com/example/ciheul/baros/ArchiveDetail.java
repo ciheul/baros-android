@@ -108,6 +108,15 @@ public class ArchiveDetail extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     System.out.println("klik ok");
+
+                    // Instantiate progress dialog object
+                    prgDialog = new ProgressDialog(ArchiveDetail.this);
+                    // Set progress dialog text
+                    prgDialog.setMessage("Please wait ...");
+                    // Set cancelable as false
+                    prgDialog.setCancelable(false);
+
+                    sendDeleteApi();
                 }
             });
 
@@ -125,6 +134,60 @@ public class ArchiveDetail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void sendDeleteApi() {
+        // Show progress dialog
+        prgDialog.show();
+
+        RequestParams params = new RequestParams();
+
+        Bundle extras = getIntent().getExtras();
+        final int pk = Integer.parseInt(String.valueOf(extras.getInt("pk")));
+        params.put("pk", pk);
+
+        RestClient.post("archive/delete/", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                // Hide Progress Dialog
+                prgDialog.hide();
+                String s = new String(responseBody);
+
+                try {
+                    // JSON Object
+                    JSONObject obj = new JSONObject(s);
+                    String response = obj.getString("success");
+                    Toast.makeText(getApplicationContext(),"Kasus " +
+                            "berhasil dihapus.", Toast.LENGTH_LONG).show();
+                    archiveList();
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    Toast.makeText(getApplicationContext(), "Error Occured " +
+                            "[Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // Hide Progress Dialog
+                prgDialog.hide();
+                // When Http response code is '404'
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code is '500'
+                else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Internal server error. Please try again.", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code other than 404, 500
+                else{
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
     public void sendRestoreApi() {
         // Show progress dialog
         prgDialog.show();
@@ -133,9 +196,6 @@ public class ArchiveDetail extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         final int pk = Integer.parseInt(String.valueOf(extras.getInt("pk")));
-
-        System.out.println(pk);
-
         params.put("pk", pk);
 
         RestClient.post("archive/restore/", params, new AsyncHttpResponseHandler() {
@@ -144,13 +204,11 @@ public class ArchiveDetail extends AppCompatActivity {
                 // Hide Progress Dialog
                 prgDialog.hide();
                 String s = new String(responseBody);
-                System.out.println(s);
 
                 try {
                     // JSON Object
                     JSONObject obj = new JSONObject(s);
                     String response = obj.getString("success");
-                    System.out.println("ini sebelum"+pk);
                     Toast.makeText(getApplicationContext(),"Kasus berhasil dipulihkan." +
                             " Kasus dapat dilihat kembali pada laman utama.", Toast.LENGTH_LONG).show();
                     archiveList();
@@ -160,7 +218,6 @@ public class ArchiveDetail extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Error Occured " +
                             "[Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
-
                 }
 
             }
