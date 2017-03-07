@@ -91,6 +91,7 @@ public class CaseDetail extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 prgDialog.hide();
                 String s = new String(responseBody);
+                System.out.println(s);
                 // Hide Progress Dialog
                 try {
                     // JSON Object
@@ -300,7 +301,7 @@ public class CaseDetail extends AppCompatActivity {
     }
 
     public void archiveList() {
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(CaseDetail.this, Home.class);
         startActivity(intent);
     }
 }
