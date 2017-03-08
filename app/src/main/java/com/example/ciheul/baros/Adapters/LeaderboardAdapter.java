@@ -1,5 +1,6 @@
 package com.example.ciheul.baros.Adapters;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,12 +40,50 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         public TextView itemTotalScore;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             itemCounter = (TextView)itemView.findViewById(R.id.card_leaderboard_counter);
             itemName = (TextView)itemView.findViewById(R.id.card_leaderboard_name);
             itemTotalScore = (TextView)itemView.findViewById(R.id.card_leaderboard_totalscore);
 
+            try {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        int pk, total_score, total_1 = 0;
+                        String nama, posisi = "";
+
+
+                        try {
+                            pk = (int) listOfPersonnel.getJSONObject(position).get("pk");
+                            nama = (String) listOfPersonnel.getJSONObject(position).get("name");
+                            posisi = (String) listOfPersonnel.getJSONObject(position).get("position");
+                            total_score = (int) listOfPersonnel.getJSONObject(position).get("total_score");
+
+                            AlertDialog.Builder alert = new AlertDialog.Builder(itemView.getContext());
+
+                            View popup = LayoutInflater.from(itemView.getContext()).inflate(R.layout.leaderboard_item,null);
+                            TextView tNama = (TextView) popup.findViewById(R.id.leaderboard_item_name);
+                            tNama.setText(nama);
+                            TextView tPosisi = (TextView) popup.findViewById(R.id.leaderboard_item_position);
+                            tPosisi.setText(posisi);
+                            TextView tTotalScore = (TextView) popup.findViewById(R.id.leaderboard_item_totalscore);
+                            tTotalScore.setText(Integer.toString(total_score));
+
+                            alert.setView(popup);
+                            alert.show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                     }
+
+                });
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("hellow");
+            }
         }
     }
 

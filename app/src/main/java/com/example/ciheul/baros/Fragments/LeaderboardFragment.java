@@ -81,10 +81,6 @@ public class LeaderboardFragment extends android.support.v4.app.Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        /*expandable list*/
-        expandableListView = (ExpandableListView) rootView.findViewById(R.id.simple_expandable_listview);
-        expandableListView.setGroupIndicator(null);
-
         firstLoader();
 
         return rootView;

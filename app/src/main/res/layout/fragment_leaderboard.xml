@@ -80,14 +80,6 @@
                 android:layout_marginBottom="10dp" />
         </LinearLayout>
 
-        <ExpandableListView
-            android:id="@+id/simple_expandable_listview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/colorAccent"
-            android:dividerHeight="1dp" >
-        </ExpandableListView>
-
     </LinearLayout>
 
 </RelativeLayout>
