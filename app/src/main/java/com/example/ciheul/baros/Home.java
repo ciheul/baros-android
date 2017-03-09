@@ -81,7 +81,8 @@ public class Home extends AppCompatActivity {
 
         setupViewPager(mViewPager);
         setupTablayout();
-        //mViewPager.setAdapter(mSectionsPagerAdapter);
+
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +198,8 @@ public class Home extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // example Return a PlaceholderFragment (defined as a static inner class below).
             String content = "No Fragments or no menu";
+            System.out.println("ini position "+ position);
+
             switch (position) {
                 case 0:{
                     content = "Daftar Kasus";
