@@ -209,7 +209,7 @@ public class Home extends AppCompatActivity {
 
                 case 2:{
                     content = "Anggota";
-                    return PersonnelFragment.newInstance(position, content);
+                    return PersonnelFragment.newInstance(position, content, rParameters);
                 }
                 case 3:{
                     content = "Search";
