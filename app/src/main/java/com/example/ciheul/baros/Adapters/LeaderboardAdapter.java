@@ -46,7 +46,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             itemName = (TextView)itemView.findViewById(R.id.card_leaderboard_name);
             itemTotalScore = (TextView)itemView.findViewById(R.id.card_leaderboard_totalscore);
 
-            try {
+/*            try {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
                         int position = getAdapterPosition();
@@ -83,7 +83,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             } catch(Exception e) {
                 e.printStackTrace();
                 System.out.println("hellow");
-            }
+            }*/
         }
     }
 
