@@ -82,6 +82,10 @@
                 android:value="com.example.ciheul.baros.ArchiveList" />
         </activity>
 
+        <activity android:name=".PersonnelStatistic"
+            android:label="Statisik">
+        </activity>
+
     </application>
 
 </manifest>
