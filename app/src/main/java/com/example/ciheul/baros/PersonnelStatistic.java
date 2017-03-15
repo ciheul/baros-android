@@ -34,6 +34,7 @@ public class PersonnelStatistic extends AppCompatActivity {
 
     private PieData pieData;
     private PieDataSet pieDataSet;
+    PieChart mChart;
 
     String sName = "";
     String sNrpRank = "";
@@ -49,6 +50,7 @@ public class PersonnelStatistic extends AppCompatActivity {
 
         loadingHolder = (LinearLayout) findViewById(R.id.loadingHolder);
         emptyHolder = (LinearLayout) findViewById(R.id.emptySetsHolder);
+        mChart = (PieChart)findViewById(R.id.piechart);
 
         /*GET DATA PIE CHART*/
         getPieChartData();
@@ -69,8 +71,9 @@ public class PersonnelStatistic extends AppCompatActivity {
 
         loadingHolder.setVisibility(View.VISIBLE);
         emptyHolder.setVisibility(View.GONE);
+        mChart.setVisibility(View.GONE);
 
-        // request API
+        //request API
         RestClient.get("stat/personnel/"+pk+"/all/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -81,11 +84,6 @@ public class PersonnelStatistic extends AppCompatActivity {
                     JSONObject obj = new JSONObject(s);
 
                     // get case info
-
-                    if (obj.length() == 0) {
-                        emptyHolder.setVisibility(View.VISIBLE);
-                    }
-
                     JSONObject cases = (JSONObject) obj.get("case");
                     Integer open = cases.getInt("open");
                     Integer closed = cases.getInt("closed");
@@ -113,33 +111,16 @@ public class PersonnelStatistic extends AppCompatActivity {
                         System.out.println(nama);
                     }
 
-                    PieChart mChart = (PieChart)findViewById(R.id.piechart);
+                    // insert data into pie chart
+                    pieChart(yPieChart, xPieChart);
 
-                    pieDataSet = new PieDataSet(yPieChart,"");
-                    pieData = new PieData(xPieChart, pieDataSet);
-
-                    // chart configuration
-                    mChart.setUsePercentValues(true);
-                    mChart.setData(pieData);
-                    mChart.setRotationAngle(0);
-                    mChart.setRotationEnabled(true);
-
-                    mChart.setDescription("");
-                    mChart.setDrawHoleEnabled(true);
-                    mChart.setTransparentCircleRadius(30f);
-                    mChart.setHoleRadius(30f);
-
-                    pieData.setValueFormatter(new PercentFormatter());
-                    pieData.setValueTextSize(13f);
-                    pieData.setValueTextColor(Color.DKGRAY);
-                    mChart.animateXY(1400, 1400);
-
-                    pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-
-                    // Legends to show on bottom of the graph
-                    Legend l = mChart.getLegend();
-                    l.setEnabled(false);
-
+                    // data is empty
+                    if (total == 0) {
+                        System.out.println("ini kosong");
+                        loadingHolder.setVisibility(View.GONE);
+                        emptyHolder.setVisibility(View.VISIBLE);
+                        mChart.setVisibility(View.GONE);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -151,6 +132,46 @@ public class PersonnelStatistic extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void pieChart(ArrayList<Entry> yPieChart, ArrayList<String> xPieChart) {
+        pieDataSet = new PieDataSet(yPieChart,"");
+        pieData = new PieData(xPieChart, pieDataSet);
+
+        mChart.setVisibility(View.VISIBLE);
+
+        // chart configuration
+        mChart.setUsePercentValues(true);
+        mChart.setData(pieData);
+        mChart.setRotationAngle(0);
+        mChart.setRotationEnabled(true);
+
+        mChart.setDescription("");
+        mChart.setDrawHoleEnabled(true);
+        mChart.setTransparentCircleRadius(30f);
+        mChart.setHoleRadius(30f);
+
+        pieData.setValueFormatter(new PercentFormatter());
+        pieData.setValueTextSize(13f);
+        pieData.setValueTextColor(Color.DKGRAY);
+        mChart.animateXY(1400, 1400);
+
+//        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            colors.add(c);
+        pieDataSet.setColors(colors);
+
+        // Legends to show on bottom of the graph
+        Legend l = mChart.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setXEntrySpace(7f);
+        l.setYEntrySpace(0f);
+        l.setYOffset(0f);
+        l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+        l.setWordWrapEnabled(true);
     }
 
 
