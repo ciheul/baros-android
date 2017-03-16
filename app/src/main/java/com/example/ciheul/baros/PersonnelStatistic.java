@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -18,6 +20,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -28,6 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -59,6 +64,8 @@ public class PersonnelStatistic extends AppCompatActivity {
 
     /* Bar Chart Jumlah Kasus Diterima dan Selesai*/
     BarChart caseChart;
+    LinearLayout loadingHolderCase;
+    LinearLayout emptyHolderCase;
 
     /* Intent */
     String sName = "";
@@ -95,6 +102,12 @@ public class PersonnelStatistic extends AppCompatActivity {
         monthlyChart = (BarChart) findViewById(R.id.barchartMonthly);
         getBarChartMonthlyData(pk, params);
 
+        /* GET DATA BAR CHART JUMLAH KASUS DITERIMA DAN SELESAI */
+        loadingHolderCase = (LinearLayout) findViewById(R.id.loadingHolderBarCase);
+        emptyHolderCase = (LinearLayout) findViewById(R.id.emptySetsHolderBarCase);
+        caseChart = (BarChart) findViewById(R.id.barchartCase);
+        getBarChartCaseData(pk, params);
+
         /*APPEND DATA FROM INTENT*/
         getIntentData();
 
@@ -129,6 +142,14 @@ public class PersonnelStatistic extends AppCompatActivity {
                     TextView tTotal = (TextView)findViewById(R.id.personnel_total_kasus);
                     tTotal.setText(String.valueOf(total));
 
+                    // data is empty
+                    if (total == 0) {
+                        loadingHolder.setVisibility(View.GONE);
+                        emptyHolder.setVisibility(View.VISIBLE);
+                        mChart.setVisibility(View.GONE);
+                        return;
+                    }
+
                     ArrayList<Entry> yPieChart = new ArrayList<Entry>();
                     ArrayList<String> xPieChart = new ArrayList<String>();
 
@@ -146,12 +167,7 @@ public class PersonnelStatistic extends AppCompatActivity {
                     // insert data into pie chart
                     pieChart(yPieChart, xPieChart);
 
-                    // data is empty
-                    if (total == 0) {
-                        loadingHolder.setVisibility(View.GONE);
-                        emptyHolder.setVisibility(View.VISIBLE);
-                        mChart.setVisibility(View.GONE);
-                    }
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -233,12 +249,17 @@ public class PersonnelStatistic extends AppCompatActivity {
                         xPieChartStats.add(namaStats);
                     }
 
-                    getPieChartStats(yPieChartStats, xPieChartStats);
-
+                    // data is empty
                     if (dataPieChartStats.length() == 0) {
                         loadingHolderStats.setVisibility(View.GONE);
                         emptyHolderStats.setVisibility(View.VISIBLE);
-                        statChart.setVisibility(View.GONE);                    }
+                        statChart.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    // insert data into chart
+                    getPieChartStats(yPieChartStats, xPieChartStats);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -294,15 +315,248 @@ public class PersonnelStatistic extends AppCompatActivity {
     }
 
     public void getBarChartMonthlyData(int pk, RequestParams params) {
+        // loading container
+        loadingHolderMonthly.setVisibility(View.VISIBLE);
+        emptyHolderMonthly.setVisibility(View.GONE);
+        monthlyChart.setVisibility(View.GONE);
         RestClient.get("stat/personnel/" + pk + "/monthly/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String dataMonthly = new String(responseBody);
+                loadingHolderMonthly.setVisibility(View.GONE);
 
                 try {
                     JSONObject obj = new JSONObject(dataMonthly);
                     Integer has_data = (Integer) obj.get("has_data");
 
+                    if (has_data == 0) {
+                        loadingHolderMonthly.setVisibility(View.GONE);
+                        emptyHolderMonthly.setVisibility(View.VISIBLE);
+                        monthlyChart.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    monthlyChart.setVisibility(View.VISIBLE);
+
+                    JSONObject dataArr = (JSONObject) obj.getJSONObject("data");
+                    JSONArray categories = dataArr.getJSONArray("categories");
+                    JSONArray series = dataArr.getJSONArray("series");
+
+                    ArrayList<BarEntry> yValue1 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue2 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue3 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue4 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue5 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue6 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue7 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue8 = new ArrayList<BarEntry>();
+
+                    ArrayList<String> labels = new ArrayList<String>();
+                    JSONObject dataSeries, dataCategories = null;
+
+                    for (int i = 0; i <series.length(); i++) {
+                        dataSeries = (JSONObject) series.getJSONObject(i);
+
+                        String namaSeries = dataSeries.getString("name");
+
+                        switch (i) {
+                            case 0:
+                                JSONArray datas1 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas1.length(); j++) {
+                                    Integer yData1 = datas1.getInt(j);
+                                    yValue1.add(new BarEntry(yData1, j));
+                                }
+                                break;
+
+                            case 1:
+                                JSONArray datas2 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas2.length() ; j++) {
+                                    Integer yData2 = datas2.getInt(j);
+                                    yValue2.add(new BarEntry(yData2, j));
+                                }
+                                break;
+
+                            case 3:
+                                JSONArray datas3 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas3.length() ; j++) {
+                                    Integer yData3 = datas3.getInt(j);
+                                    yValue3.add(new BarEntry(yData3, j));
+                                }
+                                break;
+
+                            case 4:
+                                JSONArray datas4 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas4.length() ; j++) {
+                                    Integer yData4 = datas4.getInt(j);
+                                    yValue4.add(new BarEntry(yData4, j));
+                                }
+                                break;
+
+                            case 5:
+                                JSONArray datas5 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas5.length() ; j++) {
+                                    Integer yData5 = datas5.getInt(j);
+                                    yValue5.add(new BarEntry(yData5, j));
+                                }
+                                break;
+
+                            case 6:
+                                JSONArray datas6 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas6.length() ; j++) {
+                                    Integer yData6 = datas6.getInt(j);
+                                    yValue6.add(new BarEntry(yData6, j));
+                                }
+                                break;
+
+                            case 7:
+                                JSONArray datas7 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas7.length() ; j++) {
+                                    Integer yData7 = datas7.getInt(j);
+                                    yValue7.add(new BarEntry(yData7, j));
+                                }
+                                break;
+
+                            case 8:
+                                JSONArray datas8 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas8.length() ; j++) {
+                                    Integer yData8 = datas8.getInt(j);
+                                    yValue8.add(new BarEntry(yData8, j));
+                                }
+                                break;
+
+                        }
+                    }
+
+                    for (int i = 0; i < categories.length(); i++) {
+                        String cat = (String) categories.get(i);
+                        labels.add(cat);
+                    }
+
+                    BarDataSet set1, set2, set3, set4, set5, set6, set7, set8;
+
+                    // create 2 datasets with different types
+                    set1 = new BarDataSet(yValue1, "Klarifikasi");
+                    set2 = new BarDataSet(yValue2, "Gelar Perkara");
+                    set3 = new BarDataSet(yValue3, "Pemanggilan");
+                    set4 = new BarDataSet(yValue4, "SP2HP");
+                    set5 = new BarDataSet(yValue5, "SP2HP A2");
+                    set6 = new BarDataSet(yValue6, "Pelimpahan");
+                    set7 = new BarDataSet(yValue7, "P21");
+                    set8 = new BarDataSet(yValue8, "SP3");
+
+                    set1.setColor(Color.rgb(104, 241, 175));
+                    set2.setColor(Color.rgb(164, 228, 251));
+                    set3.setColor(Color.rgb(164, 228, 257));
+                    set4.setColor(Color.rgb(164, 228, 252));
+                    set5.setColor(Color.rgb(164, 228, 253));
+                    set6.setColor(Color.rgb(164, 228, 254));
+                    set7.setColor(Color.rgb(164, 228, 255));
+                    set8.setColor(Color.rgb(164, 228, 256));
+
+                    ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+                    dataSets.add(set1);
+                    dataSets.add(set2);
+                    dataSets.add(set3);
+                    dataSets.add(set4);
+                    dataSets.add(set5);
+                    dataSets.add(set6);
+                    dataSets.add(set7);
+                    dataSets.add(set8);
+
+                    BarData data = new BarData(labels,dataSets);
+                    monthlyChart.setData(data);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
+    public void getBarChartCaseData(int pk, RequestParams params) {
+        // loading container
+        loadingHolderCase.setVisibility(View.VISIBLE);
+        emptyHolderCase.setVisibility(View.GONE);
+        caseChart.setVisibility(View.GONE);
+        RestClient.get("stat/personnel/"+pk+"/case/list/", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String caseData = new String (responseBody);
+
+                loadingHolderCase.setVisibility(View.GONE);
+
+                try {
+                    JSONObject obj = new JSONObject(caseData);
+                    Integer has_data = (Integer) obj.get("has_data");
+
+                    if (has_data == 0) {
+                        loadingHolderCase.setVisibility(View.GONE);
+                        emptyHolderCase.setVisibility(View.VISIBLE);
+                        caseChart.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    caseChart.setVisibility(View.VISIBLE);
+
+                    JSONObject dataArr = (JSONObject) obj.getJSONObject("data");
+                    JSONArray categories = dataArr.getJSONArray("categories");
+                    JSONArray series = dataArr.getJSONArray("series");
+
+                    ArrayList<BarEntry> yValue1 = new ArrayList<BarEntry>();
+                    ArrayList<BarEntry> yValue2 = new ArrayList<BarEntry>();
+                    ArrayList<String> labels = new ArrayList<String>();
+
+                    JSONObject dataSeries, dataCategories = null;
+
+                    for (int i = 0; i <series.length(); i++) {
+                        dataSeries = (JSONObject) series.getJSONObject(i);
+
+                        String namaSeries = dataSeries.getString("name");
+
+                        switch (i) {
+                            case 0:
+                                JSONArray datas1 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas1.length(); j++) {
+                                    Integer yData1 = datas1.getInt(j);
+                                    yValue1.add(new BarEntry(yData1, j));
+                                }
+                                break;
+
+                            case 1:
+                                JSONArray datas2 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas2.length() ; j++) {
+                                    Integer yData2 = datas2.getInt(j);
+                                    yValue2.add(new BarEntry(yData2, j));
+                                }
+                                break;
+                        }
+                    }
+
+                    for (int i = 0; i < categories.length(); i++) {
+                        String cat = (String) categories.get(i);
+                        labels.add(cat);
+                    }
+
+                    BarDataSet set1, set2;
+
+                    // create 2 datasets with different types
+                    set1 = new BarDataSet(yValue1, "Kasus Diterima");
+                    set1.setColor(Color.rgb(104, 241, 175));
+                    set2 = new BarDataSet(yValue2, "Kasus Selesai");
+                    set2.setColor(Color.rgb(164, 228, 251));
+
+                    ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+                    dataSets.add(set1);
+                    dataSets.add(set2);
+
+                    BarData data = new BarData(labels,dataSets);
+                    caseChart.setData(data);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
