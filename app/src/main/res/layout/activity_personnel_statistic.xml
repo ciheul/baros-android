@@ -253,11 +253,302 @@
 
                 </LinearLayout>
 
-                <View
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:text="Kinerja Bulanan"
+                    android:textSize="18sp"
                     android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:text="(berdasarkan tanggal dokumen)"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/emptySetsHolderBarMonthly"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_gravity="center"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:text="Data statistik tidak tersedia."
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/loadingHolderBarMonthly">
+                    <ProgressBar android:id="@+id/firstLookLoaderBarMonthly"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/firstLookLoaderTextBarMonthly"
+                        android:text="Mohon tunggu, memuat data"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchartMonthly"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:text="Jumlah Kasus Diterima dan Selesai"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:text="(berdasarkan bulan kasus dan dokumen setahun terakhir)"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/emptySetsHolderBarCase"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_gravity="center"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:text="Data statistik tidak tersedia."
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/loadingHolderBarCase">
+                    <ProgressBar android:id="@+id/firstLookLoaderBarCase"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/firstLookLoaderTextBarCase"
+                        android:text="Mohon tunggu, memuat data"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchartCase"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:text="Statistik Kinerja"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:text="(berdasarkan kasus yang ditangani)"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/emptySetsHolderStats"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_gravity="center"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:text="Data statistik tidak tersedia dalam setahun terakkhir."
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/loadingHolderStats">
+                    <ProgressBar android:id="@+id/firstLookLoaderStats"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/firstLookLoaderTextStats"
+                        android:text="Mohon tunggu, memuat data"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/piechartStats"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="5dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
