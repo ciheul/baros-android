@@ -195,11 +195,6 @@
                     android:id="@+id/emptySetsHolder"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_gravity="center"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="20dp" />
                     <TextView
                         android:text="Data statistik tidak tersedia atau bukan penyidik."
                         android:gravity="center"
@@ -294,11 +289,6 @@
                     android:id="@+id/emptySetsHolderBarMonthly"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_gravity="center"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="20dp" />
                     <TextView
                         android:text="Data statistik tidak tersedia."
                         android:gravity="center"
@@ -393,11 +383,6 @@
                     android:id="@+id/emptySetsHolderBarCase"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_gravity="center"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="20dp" />
                     <TextView
                         android:text="Data statistik tidak tersedia."
                         android:gravity="center"
@@ -492,11 +477,6 @@
                     android:id="@+id/emptySetsHolderStats"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_gravity="center"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="20dp" />
                     <TextView
                         android:text="Data statistik tidak tersedia dalam setahun terakkhir."
                         android:gravity="center"
