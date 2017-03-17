@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -30,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,7 +190,7 @@ public class PersonnelStatistic extends AppCompatActivity {
         mChart.setVisibility(View.VISIBLE);
 
         // chart configuration
-        mChart.setUsePercentValues(true);
+//        mChart.setUsePercentValues(true);
         mChart.setData(pieData);
         mChart.setRotationAngle(0);
         mChart.setRotationEnabled(true);
@@ -198,7 +200,8 @@ public class PersonnelStatistic extends AppCompatActivity {
         mChart.setTransparentCircleRadius(30f);
         mChart.setHoleRadius(30f);
 
-        pieData.setValueFormatter(new PercentFormatter());
+        pieData.setValueFormatter((ValueFormatter) new MyValueFormatter());
+//        pieData.setValueFormatter(new PercentFormatter());
         pieData.setValueTextSize(13f);
         pieData.setValueTextColor(Color.DKGRAY);
         mChart.animateXY(1400, 1400);
@@ -281,7 +284,7 @@ public class PersonnelStatistic extends AppCompatActivity {
         statChart.setVisibility(View.VISIBLE);
 
         // chart configuration
-        statChart.setUsePercentValues(true);
+//        statChart.setUsePercentValues(true);
         statChart.setData(pieDataStats);
         statChart.setRotationAngle(0);
         statChart.setRotationEnabled(true);
@@ -291,7 +294,8 @@ public class PersonnelStatistic extends AppCompatActivity {
         statChart.setTransparentCircleRadius(30f);
         statChart.setHoleRadius(30f);
 
-        pieDataStats.setValueFormatter(new PercentFormatter());
+        pieDataStats.setValueFormatter((ValueFormatter) new MyValueFormatter());
+//        pieDataStats.setValueFormatter(new PercentFormatter());
         pieDataStats.setValueTextSize(13f);
         pieDataStats.setValueTextColor(Color.DKGRAY);
         statChart.animateXY(1400, 1400);
@@ -342,6 +346,7 @@ public class PersonnelStatistic extends AppCompatActivity {
                     JSONArray categories = dataArr.getJSONArray("categories");
                     JSONArray series = dataArr.getJSONArray("series");
 
+                    ArrayList<BarEntry> yValue0 = new ArrayList<BarEntry>();
                     ArrayList<BarEntry> yValue1 = new ArrayList<BarEntry>();
                     ArrayList<BarEntry> yValue2 = new ArrayList<BarEntry>();
                     ArrayList<BarEntry> yValue3 = new ArrayList<BarEntry>();
@@ -349,7 +354,6 @@ public class PersonnelStatistic extends AppCompatActivity {
                     ArrayList<BarEntry> yValue5 = new ArrayList<BarEntry>();
                     ArrayList<BarEntry> yValue6 = new ArrayList<BarEntry>();
                     ArrayList<BarEntry> yValue7 = new ArrayList<BarEntry>();
-                    ArrayList<BarEntry> yValue8 = new ArrayList<BarEntry>();
 
                     ArrayList<String> labels = new ArrayList<String>();
                     JSONObject dataSeries, dataCategories = null;
@@ -358,9 +362,17 @@ public class PersonnelStatistic extends AppCompatActivity {
                         dataSeries = (JSONObject) series.getJSONObject(i);
 
                         String namaSeries = dataSeries.getString("name");
-
+;
                         switch (i) {
                             case 0:
+                                JSONArray datas0 = dataSeries.getJSONArray("data");
+                                for (int j = 0; j < datas0.length(); j++) {
+                                    Integer yData0 = datas0.getInt(j);
+                                    yValue0.add(new BarEntry(yData0, j));
+                                }
+                                break;
+
+                            case 1:
                                 JSONArray datas1 = dataSeries.getJSONArray("data");
                                 for (int j = 0; j < datas1.length(); j++) {
                                     Integer yData1 = datas1.getInt(j);
@@ -368,7 +380,7 @@ public class PersonnelStatistic extends AppCompatActivity {
                                 }
                                 break;
 
-                            case 1:
+                            case 2:
                                 JSONArray datas2 = dataSeries.getJSONArray("data");
                                 for (int j = 0; j < datas2.length() ; j++) {
                                     Integer yData2 = datas2.getInt(j);
@@ -415,15 +427,6 @@ public class PersonnelStatistic extends AppCompatActivity {
                                     yValue7.add(new BarEntry(yData7, j));
                                 }
                                 break;
-
-                            case 8:
-                                JSONArray datas8 = dataSeries.getJSONArray("data");
-                                for (int j = 0; j < datas8.length() ; j++) {
-                                    Integer yData8 = datas8.getInt(j);
-                                    yValue8.add(new BarEntry(yData8, j));
-                                }
-                                break;
-
                         }
                     }
 
@@ -435,23 +438,23 @@ public class PersonnelStatistic extends AppCompatActivity {
                     BarDataSet set1, set2, set3, set4, set5, set6, set7, set8;
 
                     // create 2 datasets with different types
-                    set1 = new BarDataSet(yValue1, "Klarifikasi");
-                    set2 = new BarDataSet(yValue2, "Gelar Perkara");
-                    set3 = new BarDataSet(yValue3, "Pemanggilan");
-                    set4 = new BarDataSet(yValue4, "SP2HP");
-                    set5 = new BarDataSet(yValue5, "SP2HP A2");
-                    set6 = new BarDataSet(yValue6, "Pelimpahan");
-                    set7 = new BarDataSet(yValue7, "P21");
-                    set8 = new BarDataSet(yValue8, "SP3");
+                    set1 = new BarDataSet(yValue0, "Klarifikasi");
+                    set2 = new BarDataSet(yValue1, "Gelar Perkara");
+                    set3 = new BarDataSet(yValue2, "Pemanggilan");
+                    set4 = new BarDataSet(yValue3, "SP2HP");
+                    set5 = new BarDataSet(yValue4, "SP2HP A2");
+                    set6 = new BarDataSet(yValue5, "Pelimpahan");
+                    set7 = new BarDataSet(yValue6, "P21");
+                    set8 = new BarDataSet(yValue7, "SP3");
 
-                    set1.setColor(Color.rgb(104, 241, 175));
-                    set2.setColor(Color.rgb(164, 228, 251));
-                    set3.setColor(Color.rgb(164, 228, 257));
-                    set4.setColor(Color.rgb(164, 228, 252));
-                    set5.setColor(Color.rgb(164, 228, 253));
-                    set6.setColor(Color.rgb(164, 228, 254));
+                    set1.setColor(Color.rgb(75, 188, 244));
+                    set2.setColor(Color.rgb(108, 191, 132));
+                    set3.setColor(Color.rgb(63, 66, 52));
+                    set4.setColor(Color.rgb(179, 124, 87));
+                    set5.setColor(Color.rgb(97, 58, 67));
+                    set6.setColor(Color.rgb(132, 153, 116));
                     set7.setColor(Color.rgb(164, 228, 255));
-                    set8.setColor(Color.rgb(164, 228, 256));
+                    set8.setColor(Color.rgb(197, 145, 157));
 
                     ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
                     dataSets.add(set1);
@@ -464,7 +467,17 @@ public class PersonnelStatistic extends AppCompatActivity {
                     dataSets.add(set8);
 
                     BarData data = new BarData(labels,dataSets);
+                    data.setValueFormatter((ValueFormatter) new MyValueFormatter());
                     monthlyChart.setData(data);
+
+                    // Legends to show on bottom of the graph
+                    Legend l = monthlyChart.getLegend();
+                    l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+                    l.setXEntrySpace(7f);
+                    l.setYEntrySpace(0f);
+                    l.setYOffset(0f);
+                    l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+                    l.setWordWrapEnabled(true);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -547,16 +560,31 @@ public class PersonnelStatistic extends AppCompatActivity {
 
                     // create 2 datasets with different types
                     set1 = new BarDataSet(yValue1, "Kasus Diterima");
-                    set1.setColor(Color.rgb(104, 241, 175));
+                    set1.setColor(Color.rgb(75, 188, 244));
                     set2 = new BarDataSet(yValue2, "Kasus Selesai");
-                    set2.setColor(Color.rgb(164, 228, 251));
+                    set2.setColor(Color.rgb(108, 191, 132));
 
                     ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
                     dataSets.add(set1);
                     dataSets.add(set2);
 
                     BarData data = new BarData(labels,dataSets);
+                    data.setValueFormatter((ValueFormatter) new MyValueFormatter());
+
                     caseChart.setData(data);
+                    caseChart.invalidate();
+
+                    // chart customize
+                    XAxis xAxis = caseChart.getXAxis();
+
+                    // Legends to show on bottom of the graph
+                    Legend l = caseChart.getLegend();
+                    l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+                    l.setXEntrySpace(7f);
+                    l.setYEntrySpace(0f);
+                    l.setYOffset(0f);
+                    l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+                    l.setWordWrapEnabled(true);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -570,6 +598,27 @@ public class PersonnelStatistic extends AppCompatActivity {
             }
         });
     }
+
+    public class MyValueFormatter implements ValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        public MyValueFormatter() {
+            mFormat = new DecimalFormat("###");
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+
+            if(value > 0) {
+                return mFormat.format(value);
+            } else {
+                return "";
+            }
+        }
+
+    }
+
 
     public void getIntentData() {
         Bundle extras = getIntent().getExtras();

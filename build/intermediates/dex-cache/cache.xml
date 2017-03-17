@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="702d952cca19b0bc2c2c0c15993f22e4dac905ae">
+        sha1="15fb42fe49c1a845296cc0c3d5e1ce87fcce683f">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_17acb7726887d51f98646a139ca4848cc7b3ce2e/classes.dex" />
     </item>
     <item
@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="030cf917a0111b34091126c895f338dbc8566e2d">
+        sha1="c7cfc2497e30b6821f227254fcddaecc2b446af4">
         <dex dex="/home/ciheul/Projects/baros-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ffea2d817ccd310a2f1663649f106a2b5363dc03/classes.dex" />
     </item>
     <item
