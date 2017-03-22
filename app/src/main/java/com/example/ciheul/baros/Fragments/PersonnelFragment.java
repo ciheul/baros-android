@@ -1,5 +1,6 @@
 package com.example.ciheul.baros.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -9,11 +10,13 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ciheul.baros.Adapters.CasesAdapter;
 import com.example.ciheul.baros.Adapters.PersonnelsAdapter;
+import com.example.ciheul.baros.AddNewPersonnel;
 import com.example.ciheul.baros.EndlessScrollListener;
 import com.example.ciheul.baros.R;
 import com.example.ciheul.baros.RestClient;
@@ -31,7 +34,7 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by ciheul on 14/02/17.
  */
-public class PersonnelFragment extends Fragment {
+public class PersonnelFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_SECTION_NUMBER = "CASES FRAGMENT PLATTER";
     private static final String ARG_CONTENT_TEXT = "TEXT CONTENT";
 
@@ -67,6 +70,10 @@ public class PersonnelFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_personnel, container, false);
 
+        /* ADD PERSONNEL */
+        Button addPersonnel = (Button) rootView.findViewById(R.id.addingPersonnelBtn);
+        addPersonnel.setOnClickListener(this);
+
         loadingHolder = (LinearLayout) rootView.findViewById(R.id.loadingHolder);
         emptyHolder = (LinearLayout) rootView.findViewById(R.id.emptySetsHolder);
 
@@ -91,17 +98,13 @@ public class PersonnelFragment extends Fragment {
                 }
 
                 loadNextDataFromApi(page, view, filterParams);
-                System.out.println("ini page++"+page);
-                System.out.println("ini total items++"+totalItemsCount);
-
-                //System.out.println("lasted::"+this.getLastVisibleItem(recyclerView.getDrawableState()));
             }
-
         };
-        recyclerView.addOnScrollListener(scrollListener);
 
+        recyclerView.addOnScrollListener(scrollListener);
         return rootView;
     }
+
 
     private DisplayMetrics getDeviceResoluition() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -140,20 +143,10 @@ public class PersonnelFragment extends Fragment {
                 try {
                     // JSON Object data sets to append and notify
                     JSONObject obj = new JSONObject(s);
-                    System.out.println(obj);
-
                     merge(obj);
-
-                    /*adapter = new CasesAdapter(obj);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.scrollToPosition(scrollTo);
-                    adapter.notifyDataSetChanged();*/
-                    //scrollListener.resetState();
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -183,6 +176,7 @@ public class PersonnelFragment extends Fragment {
         });
     }
 
+
     private JSONObject merge(JSONObject... jsonObjects) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         int sizeOfCols = 0;
@@ -192,7 +186,6 @@ public class PersonnelFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         for(JSONObject temp : jsonObjects){
             Iterator<String> keys = temp.keys();
@@ -246,15 +239,10 @@ public class PersonnelFragment extends Fragment {
                 recyclerView.smoothScrollToPosition(scrollTo);
                 recyclerView.scrollToPosition(scrollTo);
                 adapter.notifyDataSetChanged();
-
             }
         }
-        System.out.println("sasd"+sizeOfCols);
-
         return jsonObject;
     }
-
-
 
 
     private void firstDataLoader() {
@@ -283,7 +271,6 @@ public class PersonnelFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -295,4 +282,14 @@ public class PersonnelFragment extends Fragment {
 
     JSONObject personnelCollection = new JSONObject();
     private JSONObject getPersonnelCollection() { return personnelCollection; }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.addingPersonnelBtn:
+                Intent intent = new Intent(v.getContext(), AddNewPersonnel.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }

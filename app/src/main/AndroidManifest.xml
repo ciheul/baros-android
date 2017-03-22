@@ -3,6 +3,8 @@
     package="com.example.ciheul.baros">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -84,6 +86,10 @@
 
         <activity android:name=".PersonnelStatistic"
             android:label="Statisik">
+        </activity>
+
+        <activity android:name=".AddNewPersonnel"
+            android:label="Tambah Anggota">
         </activity>
 
     </application>

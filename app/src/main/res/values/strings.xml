@@ -24,6 +24,16 @@
 
     <string name="snack_bar_action">TOP</string>
 
+    <string name="personnel_upload">Unggah Gambar</string>
+    <string name="personnel_name">Nama Lengkap</string>
+    <string name="personnel_nrp">NRP</string>
+    <string name="personnel_rank">Pangkat</string>
+    <string name="personnel_position">Jabatan</string>
+    <string name="personnel_phone">Telepon</string>
+    <string name="personnel_desc">Deskripsi</string>
+    <string name="personnel_is_inv">Penyidik</string>
+    <string name="radio_button_inv_t">Ya</string>
+    <string name="radio_button_inv_f">Tidak</string>
 </resources>
 
 
