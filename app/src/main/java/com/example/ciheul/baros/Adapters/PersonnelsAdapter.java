@@ -69,13 +69,9 @@ public class PersonnelsAdapter extends RecyclerView.Adapter<PersonnelsAdapter.Vi
             viewHolder.itemPosition.setText(""+ listOfPersonnel.getJSONObject(i).get("rank")
                     + "/" + this.listOfPersonnel.getJSONObject(i).get("nrp"));
             viewHolder.itemPhone.setText(""+this.listOfPersonnel.getJSONObject(i).get("phone"));
-//            viewHolder.itemNrp.setText(""+this.listOfPersonnel.getJSONObject(i).get("nrp"));
-//            viewHolder.itemRank.setText(""+this.listOfPersonnel.getJSONObject(i).get("rank"));
-//            viewHolder.itemIsInvestigator.setText(""+this.listOfPersonnel.getJSONObject(i).get("is_investigator"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -102,45 +98,36 @@ public class PersonnelsAdapter extends RecyclerView.Adapter<PersonnelsAdapter.Vi
             try {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
-                        int position = getAdapterPosition();
-                        int pk = 0;
-                        String nama = null;
-                        String posisi = null;
-                        String nrpRank = null;
+                    int position = getAdapterPosition();
+                    int pk = 0;
+                    String nama = null;
+                    String posisi = null;
+                    String nrpRank = null;
 
-                        try {
-                            pk = (int) listOfPersonnel.getJSONObject(position).get("pk");
-                            nama = (String) listOfPersonnel.getJSONObject(position).get("name");
-                            posisi = (String) listOfPersonnel.getJSONObject(position).get("position");
-                            nrpRank = (String) (listOfPersonnel.getJSONObject(position).get("rank") + "/" +
-                                    (listOfPersonnel.getJSONObject(position).get("nrp")));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    try {
+                        pk = (int) listOfPersonnel.getJSONObject(position).get("pk");
+                        nama = (String) listOfPersonnel.getJSONObject(position).get("name");
+                        posisi = (String) listOfPersonnel.getJSONObject(position).get("position");
+                        nrpRank = (String) (listOfPersonnel.getJSONObject(position).get("rank") + "/" +
+                                (listOfPersonnel.getJSONObject(position).get("nrp")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                        // TODO go INTENT case detail view class
-                        Intent intent = new Intent(v.getContext(), PersonnelStatistic.class);
-                        intent.putExtra("pk", pk);
-                        intent.putExtra("nama", nama);
-                        intent.putExtra("posisi", posisi);
-                        intent.putExtra("nrpRank", nrpRank);
-                        v.getContext().startActivity(intent);
+                    // TODO go INTENT case detail view class
+                    Intent intent = new Intent(v.getContext(), PersonnelStatistic.class);
+                    intent.putExtra("pk", pk);
+                    intent.putExtra("nama", nama);
+                    intent.putExtra("posisi", posisi);
+                    intent.putExtra("nrpRank", nrpRank);
+                    v.getContext().startActivity(intent);
 
-/*                        Snackbar.make(v, "Click detected on item " + position,
-                                Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null).show();
-                                .setAction(R.string.snack_bar_action, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        v.getRootView().scrollTo(0,0);
-                                    }
-                                }).show();*/
                     }
 
                 });
             } catch(Exception e) {
                 e.printStackTrace();
-                System.out.println("hellow");
+                System.out.println("error");
             }
         }
     }

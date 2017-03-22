@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_height="200dp"
+                    android:layout_width="200dp"
+                    android:id="@+id/personnel_ava"
+                    android:layout_marginRight="10pt"
+                    android:layout_marginLeft="5pt"
+                    android:layout_marginBottom="5pt"
+                    app:srcCompat="@drawable/ava_user_0" />
+
+                <Button
+                    android:id="@+id/buttonLoadPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personnel_upload"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_name"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_personnel_nama"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_nrp"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_personnel_nrp"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_rank"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/dropdown_personnel_pangkat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_position"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/dropdown_personnel_jabatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_is_inv"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="15dp"
+                android:id="@+id/radio_inv">
+                <RadioButton
+                    android:id="@+id/radio_inv_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_button_inv_t"
+                    android:onClick="onRadioButtonClicked"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_inv_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_button_inv_f"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:paddingLeft="10dp"
+                android:id="@+id/radio_grouper_error"
+                android:visibility="invisible"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_margin="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_phone"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_personnel_telepon"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/personnel_desc"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="normal|bold" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_personnel_deskripsi"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
